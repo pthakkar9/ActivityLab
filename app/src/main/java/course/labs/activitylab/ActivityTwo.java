@@ -34,10 +34,7 @@ public class ActivityTwo extends Activity {
     // Create variables for each of the TextViews
     // named  mTvCreate, mTvRestart, mTvStart, mTvResume.
     // for displaying the current count of each counter variable
-    TextView mTvCreate = (TextView) findViewById(R.id.create);
-    TextView mTvRestart = (TextView) findViewById(R.id.restart);
-    TextView mTvStart = (TextView) findViewById(R.id.start);
-    TextView mTvResume = (TextView) findViewById(R.id.resume);
+    TextView mTvCreate, mTvRestart, mTvStart, mTvResume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +44,10 @@ public class ActivityTwo extends Activity {
         // Assign the appropriate TextViews to the TextView variables
         // Hint: Access the TextView by calling Activity's findViewById()
         // textView1 = (TextView) findViewById(R.id.textView1);
-        // done
+        mTvCreate = (TextView) findViewById(R.id.create);
+        mTvRestart = (TextView) findViewById(R.id.restart);
+        mTvStart = (TextView) findViewById(R.id.start);
+        mTvResume = (TextView) findViewById(R.id.resume);
 
 
         Button closeButton = (Button) findViewById(R.id.bClose);
@@ -56,9 +56,9 @@ public class ActivityTwo extends Activity {
             @Override
             public void onClick(View v) {
 
-                // TODO:
                 // This function closes Activity Two
                 // Hint: use Context's finish() method
+                finish();
 
 
             }
@@ -67,10 +67,13 @@ public class ActivityTwo extends Activity {
         // Has previous state been saved?
         if (savedInstanceState != null) {
 
-            // TODO:
             // Restore value of counters from saved state
             // Only need 4 lines of code, one for every count variable
 
+            mRestart = savedInstanceState.getInt(RESTART_KEY);
+            mResume = savedInstanceState.getInt(RESUME_KEY);
+            mCreate = savedInstanceState.getInt(CREATE_KEY);
+            mStart = savedInstanceState.getInt(START_KEY);
 
         }
 
@@ -159,10 +162,15 @@ public class ActivityTwo extends Activity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
 
-        // TODO:
         // Save counter state information with a collection of key-value pairs
         // 4 lines of code, one for every count variable
 
+        savedInstanceState.putInt(RESTART_KEY, mRestart);
+        savedInstanceState.putInt(RESUME_KEY, mResume);
+        savedInstanceState.putInt(CREATE_KEY, mCreate);
+        savedInstanceState.putInt(START_KEY, mStart);
+
+        super.onSaveInstanceState(savedInstanceState);
 
     }
 
